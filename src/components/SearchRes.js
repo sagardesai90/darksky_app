@@ -1,12 +1,9 @@
 import React, { Component } from "react";
-import API from "../api/api";
 
 class SearchRes extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      expand: false,
-      saved: false,
       latLon: props.latLon,
       res: ""
     };
@@ -38,7 +35,25 @@ class SearchRes extends Component {
   }
 
   render() {
-    return <div className="card">{JSON.stringify(this.state.latLon)}</div>;
+    return (
+      <div>
+        <div className="card">{JSON.stringify(this.state.latLon)}</div>
+        {this.state.res !== "" && (
+          <div>
+            <div className="card-info">
+              Currently Forecast:{" "}
+              {JSON.stringify(this.state.res.currently.summary)}
+            </div>
+            <div className="card-info">
+              Hourly Forecast: {JSON.stringify(this.state.res.hourly.summary)}
+            </div>
+            <div className="card-info">
+              Daily Forecast: {JSON.stringify(this.state.res.daily.summary)}
+            </div>
+          </div>
+        )}
+      </div>
+    );
   }
 }
 

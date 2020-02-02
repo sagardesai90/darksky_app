@@ -55,7 +55,6 @@ class Search extends Component {
           </div>
         </form>
         <SearchRes latLon={this.state.latLon} />
-        <button />
       </div>
     );
   }
