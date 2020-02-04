@@ -32,14 +32,15 @@ class SearchRes extends Component {
     const [prevLat, prevLon] = prevProps.latLon;
     const [currLat, currLon] = this.props.latLon;
     if (currLat !== prevLat && currLon !== prevLon) {
-      this.getWeather([currLat, currLon]);
+      setInterval(() => {
+        this.getWeather([currLat, currLon]);
+      }, 3000);
     }
   }
 
   render() {
     return (
       <div>
-        {/* <div className="card">{JSON.stringify(this.state.latLon)}</div> */}
         {this.state.res !== "" && (
           <Card className="card-info">
             <div>

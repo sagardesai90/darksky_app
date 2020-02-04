@@ -83,7 +83,7 @@ class Search extends Component {
   render() {
     return (
       <div>
-        <p>Which city?</p>
+        <h3>Weather</h3>
         <div className="search-bar">
           {/* <div className="search-row">
           <form id="form" onSubmit={this.submitSearch.bind(this)}>
@@ -100,7 +100,7 @@ class Search extends Component {
           </form>
           <MyLocationIcon className="loc-icon" onClick={this.getLocation} />
         </div> */}
-          <Paper component="form" className="root">
+          <Paper component="form" className="root" elevation={3}>
             <form onSubmit={this.submitSearch.bind(this)}>
               <InputBase
                 className="input"
@@ -117,7 +117,7 @@ class Search extends Component {
                 <SearchIcon />
               </IconButton>
             </form>
-            <Divider className="divider" orientation="vertical" />
+            <Divider className="divider" orientation="horizontal" />
             <IconButton
               color="primary"
               className="iconButton"

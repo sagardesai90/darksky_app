@@ -5,6 +5,8 @@ const path = require("path");
 const PORT = process.env.PORT || 3001;
 const fetch = require("node-fetch");
 const DARKSKY = process.env.DARKSKY;
+// const path = require("path");
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
@@ -30,19 +32,6 @@ app.get("/forecast", function(req, res) {
     .then(dsRes => dsRes.json())
     .then(finRes => res.json(finRes));
 });
-
-// fetch(
-//   `https://api.darksky.net/forecast/61e9b18d204e4e5d2d2209062be1400e/${latLon[0]}, ${latLon[1]}`,
-//   {
-//     method: "GET",
-//     headers: {
-//       "Content-Type": "application/json",
-//       Accept: "application/json",
-//       "Access-Control-Allow-Origin": "*",
-//       mode: "no-cors"
-//     }
-//   }
-// ).then(res => res.json());
 
 app.listen(PORT, () => {
   console.log(`Listening on localhost:${PORT}`);
