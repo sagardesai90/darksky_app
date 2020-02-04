@@ -33,10 +33,11 @@ class SearchRes extends Component {
     const [prevLat, prevLon] = prevProps.latLon;
     const [currLat, currLon] = this.props.latLon;
     if (currLat !== prevLat && currLon !== prevLon) {
+      this.getWeather([currLat, currLon]);
       setInterval(() => {
         // this.setState({ loading: "True" });
         this.getWeather([currLat, currLon]);
-      }, 60000);
+      }, 30000);
     }
   }
 
