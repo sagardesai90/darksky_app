@@ -12,6 +12,8 @@ import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
 import Card from "@material-ui/core/Card";
 
+import Typist from "react-typist";
+
 class Search extends Component {
   constructor() {
     super();
@@ -88,7 +90,16 @@ class Search extends Component {
   render() {
     return (
       <div>
-        <h3>Weather</h3>
+        <h3>Darksky Weather</h3>
+        <Typist className="myTypist">
+          <span>San Francisco</span>
+          <Typist.Backspace count={13} delay={200} />
+          <span>30 Rock NYC</span>
+          <Typist.Backspace count={11} delay={200} />
+          <span>Google Mountain View</span>
+          <Typist.Backspace count={20} delay={200} />
+          <span>Type any address...</span>
+        </Typist>
         <div className="search-bar">
           <Paper component="form" className="root" elevation={3}>
             <form onSubmit={this.submitSearch.bind(this)}>

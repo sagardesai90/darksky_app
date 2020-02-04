@@ -37,7 +37,7 @@ class SearchRes extends Component {
       setInterval(() => {
         // this.setState({ loading: "True" });
         this.getWeather([currLat, currLon]);
-      }, 30000);
+      }, 60000);
     }
   }
 
