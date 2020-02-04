@@ -7,7 +7,8 @@ class SearchRes extends Component {
     super(props);
     this.state = {
       latLon: props.latLon,
-      res: ""
+      res: "",
+      loading: props.loading
     };
   }
 
@@ -23,8 +24,8 @@ class SearchRes extends Component {
       }
     })
       .then(res => res.json())
-      .then(res => this.setState({ res: res }))
-      .then(res => console.log(this.state, "state"));
+      .then(res => this.setState({ res: res, loading: false }))
+      .then(res => console.log(this.state, "state in getWeather after"));
   }
 
   componentDidUpdate(prevProps) {
@@ -33,14 +34,16 @@ class SearchRes extends Component {
     const [currLat, currLon] = this.props.latLon;
     if (currLat !== prevLat && currLon !== prevLon) {
       setInterval(() => {
+        // this.setState({ loading: "True" });
         this.getWeather([currLat, currLon]);
-      }, 3000);
+      }, 60000);
     }
   }
 
   render() {
     return (
       <div>
+        {/* {this.state.loading === true && <Spinner />} */}
         {this.state.res !== "" && (
           <Card className="card-info">
             <div>

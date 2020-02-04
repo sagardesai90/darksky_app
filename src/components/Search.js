@@ -19,7 +19,8 @@ class Search extends Component {
       city: "",
       latLon: [],
       userLatLon: [],
-      localWeather: ""
+      localWeather: "",
+      loading: null
     };
     this.handleChange = this.handleChange.bind(this);
     this.submitSearch = this.submitSearch.bind(this);
@@ -43,13 +44,14 @@ class Search extends Component {
     let userLat = position.coords.latitude;
     let userLon = position.coords.longitude;
     this.setState({
-      userLatLon: [userLat, userLon]
+      userLatLon: [userLat, userLon],
+      loading: true
     });
-    this.getWeather([userLat, userLon]);
-    console.log(this.state.userLatLon, "userLatLon");
+    this.getWeather([userLat, userLon], this.state.loading);
+    console.log(this.state.loading, "userLatLon");
   }
 
-  async getWeather(latLon) {
+  async getWeather(latLon, loading) {
     const [lat, lon] = latLon;
     return fetch(`http://localhost:3001/forecast?lat=${lat}&lon=${lon}`, {
       method: "GET",
@@ -61,12 +63,15 @@ class Search extends Component {
       }
     })
       .then(res => res.json())
-      .then(res => this.setState({ localWeather: res.currently }))
-      .then(res => console.log(this.state, "state"));
+      .then(res =>
+        this.setState({ localWeather: res.currently, loading: false })
+      )
+      .then(res => console.log(this.state, "state in Search.js"));
   }
 
   submitSearch = event => {
     event.preventDefault();
+    this.setState({ loading: true });
     let city = this.state.city.trim();
     api.geocode(city).then(res => {
       const { lat, lng } = res.results[0].locations[0].latLng;
@@ -74,7 +79,7 @@ class Search extends Component {
         city,
         latLon: [lat, lng]
       });
-      console.log(this.state, "state");
+      console.log(this.state, "state in submitSearch");
     });
   };
 
@@ -85,21 +90,6 @@ class Search extends Component {
       <div>
         <h3>Weather</h3>
         <div className="search-bar">
-          {/* <div className="search-row">
-          <form id="form" onSubmit={this.submitSearch.bind(this)}>
-            <div className="field">
-              <Input
-                className="search-input"
-                id="input-field"
-                placeholder="Get the weather."
-                onChange={this.handleChange}
-                value={this.state.city}
-              />
-              <Input className="search-button" type="submit" value="Submit" />
-            </div>
-          </form>
-          <MyLocationIcon className="loc-icon" onClick={this.getLocation} />
-        </div> */}
           <Paper component="form" className="root" elevation={3}>
             <form onSubmit={this.submitSearch.bind(this)}>
               <InputBase
@@ -139,7 +129,7 @@ class Search extends Component {
           </Card>
         )}
 
-        <SearchRes latLon={this.state.latLon} />
+        <SearchRes latLon={this.state.latLon} loading={this.state.loading} />
       </div>
     );
   }
