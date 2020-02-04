@@ -4,7 +4,7 @@ const app = express();
 const path = require("path");
 const PORT = process.env.PORT || 3001;
 const fetch = require("node-fetch");
-
+const DARKSKY = process.env.DARKSKY;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
@@ -20,16 +20,13 @@ app.get("/", function(req, res) {
 
 app.get("/forecast", function(req, res) {
   const { lat, lon } = req.query;
-  fetch(
-    `https://api.darksky.net/forecast/61e9b18d204e4e5d2d2209062be1400e/${lat},${lon}`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      }
+  fetch(`https://api.darksky.net/forecast/${DARKSKY}/${lat},${lon}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json"
     }
-  )
+  })
     .then(dsRes => dsRes.json())
     .then(finRes => res.json(finRes));
 });

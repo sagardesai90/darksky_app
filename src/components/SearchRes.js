@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import "./SearchRes.css";
+import Card from "@material-ui/core/Card";
 
 class SearchRes extends Component {
   constructor(props) {
@@ -37,20 +39,24 @@ class SearchRes extends Component {
   render() {
     return (
       <div>
-        <div className="card">{JSON.stringify(this.state.latLon)}</div>
+        {/* <div className="card">{JSON.stringify(this.state.latLon)}</div> */}
         {this.state.res !== "" && (
-          <div>
-            <div className="card-info">
-              Currently Forecast:{" "}
+          <Card className="card-info">
+            <div>
+              Temperature:{" "}
+              {JSON.stringify(this.state.res.currently.temperature)} °F
+            </div>
+            <div>
+              Current Forecast:{" "}
               {JSON.stringify(this.state.res.currently.summary)}
             </div>
-            <div className="card-info">
+            <div>
               Hourly Forecast: {JSON.stringify(this.state.res.hourly.summary)}
             </div>
-            <div className="card-info">
+            <div>
               Daily Forecast: {JSON.stringify(this.state.res.daily.summary)}
             </div>
-          </div>
+          </Card>
         )}
       </div>
     );
