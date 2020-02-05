@@ -1,6 +1,3 @@
-require("dotenv").config();
-const MAPQUEST = process.env.MAPQUEST;
-
 export default {
   geocode(city) {
     return fetch(
