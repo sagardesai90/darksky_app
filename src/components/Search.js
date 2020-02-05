@@ -10,6 +10,7 @@ import InputBase from "@material-ui/core/InputBase";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
+import MenuIcon from "@material-ui/icons/Menu";
 import Card from "@material-ui/core/Card";
 
 import Typist from "react-typist";
@@ -102,23 +103,26 @@ class Search extends Component {
         </Typist>
         <div className="search-bar">
           <Paper component="form" className="root" elevation={3}>
-            <form onSubmit={this.submitSearch.bind(this)}>
+            {/* <IconButton className="iconButton" aria-label="menu">
+              <MenuIcon />
+            </IconButton> */}
+            <form onSubmit={this.submitSearch.bind(this)} className="form">
               <InputBase
                 className="input"
-                placeholder="Search Google Maps"
-                inputProps={{ "aria-label": "search google maps" }}
+                placeholder="Search Mapquest"
+                inputProps={{ "aria-label": "search Mapquest" }}
                 onChange={this.handleChange}
                 value={this.state.city}
               />
               <IconButton
                 type="submit"
-                className="iconButton"
+                className="formIconButton"
                 aria-label="search"
               >
                 <SearchIcon />
               </IconButton>
             </form>
-            <Divider className="divider" orientation="horizontal" />
+            <Divider className="divider" orientation="vertical" />
             <IconButton
               color="primary"
               className="iconButton"

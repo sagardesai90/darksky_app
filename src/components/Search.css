@@ -1,8 +1,14 @@
 .root {
   padding: "2px 4px";
   display: grid;
+  grid-template-columns: 8fr 0.01fr 1fr;
   align-items: "center";
   width: 100%;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
 }
 .input {
   margin-left: 20px;
