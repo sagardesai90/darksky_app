@@ -47,18 +47,18 @@ class SearchRes extends Component {
         {/* {this.state.loading === true && <Spinner />} */}
         {this.state.res !== "" && (
           <Card className="card-info">
-            <div>
+            <div className="temperature">
               Temperature:{" "}
               {JSON.stringify(this.state.res.currently.temperature)} °F
             </div>
-            <div>
+            <div className="current-forecast">
               Current Forecast:{" "}
               {JSON.stringify(this.state.res.currently.summary)}
             </div>
-            <div>
+            <div className="current-forecast">
               Hourly Forecast: {JSON.stringify(this.state.res.hourly.summary)}
             </div>
-            <div>
+            <div className="current-forecast">
               Daily Forecast: {JSON.stringify(this.state.res.daily.summary)}
             </div>
           </Card>

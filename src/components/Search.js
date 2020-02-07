@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import api from "../api/api";
+import api2 from "../api/api2";
 import SearchRes from "./SearchRes";
 import MyLocationIcon from "@material-ui/icons/MyLocation";
 import { Input } from "@material-ui/core";
@@ -23,6 +24,7 @@ class Search extends Component {
       latLon: [],
       userLatLon: [],
       localWeather: "",
+      userLocation: "",
       loading: null
     };
     this.handleChange = this.handleChange.bind(this);
@@ -50,8 +52,14 @@ class Search extends Component {
       userLatLon: [userLat, userLon],
       loading: true
     });
+    api2.revGeocode([userLat, userLon]).then(res => {
+      console.log(res.results[0].locations[0], "res");
+      this.setState({
+        userLocation: res.results[0].locations[0]
+      });
+    });
     this.getWeather([userLat, userLon], this.state.loading);
-    console.log(this.state.loading, "userLatLon");
+    console.log(this.state.userLocation, "userLatLon");
   }
 
   async getWeather(latLon, loading) {
@@ -134,12 +142,17 @@ class Search extends Component {
         </div>
         {this.state.localWeather !== "" && (
           <Card className="local-weather">
-            <div>
-              Local Temperature:{" "}
-              {JSON.stringify(this.state.localWeather.temperature)} °F
+            <div className="forecast">
+              <div className="userLocation">
+                {JSON.stringify(this.state.userLocation.adminArea5)},{" "}
+                {JSON.stringify(this.state.userLocation.adminArea3)}
+              </div>
+              <div>
+                Forecast: {JSON.stringify(this.state.localWeather.summary)}
+              </div>
             </div>
-            <div>
-              Forecast: {JSON.stringify(this.state.localWeather.summary)}
+            <div className="temp">
+              {JSON.stringify(this.state.localWeather.temperature)} °F
             </div>
           </Card>
         )}

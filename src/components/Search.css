@@ -26,6 +26,22 @@
   padding: 2rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+
+.forecast {
+  text-align: start;
+}
+
+.userLocation {
+  align-content: flex-start;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.temp {
+  font-size: 3rem;
 }
 
 .myTypist {
