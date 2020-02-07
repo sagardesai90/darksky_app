@@ -3,7 +3,21 @@
   padding: 2rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+}
+
+.current {
+  font-size: 2rem;
+}
+.hourly {
+  font-size: 1.2rem;
+}
+.daily {
+  font-size: 1rem;
 }
 
 .temperature {
+  font-size: 2.3rem;
+  border-bottom: 3px solid #282c34;
 }
