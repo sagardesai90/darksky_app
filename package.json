@@ -22,8 +22,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "server": "nodemon sever.js",
     "eject": "react-scripts eject",
-    "test": "jest"
+    "test": "jest",
+    "dev": "concurrently \"nodemon server.js\" \"npm run start\""
   },
   "eslintConfig": {
     "extends": "react-app"
