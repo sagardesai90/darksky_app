@@ -16,7 +16,7 @@ class SearchRes extends Component {
 
   async getWeather(latLon) {
     const [lat, lon] = latLon;
-    return fetch(`https://localhost:3001/forecast?lat=${lat}&lon=${lon}`, {
+    return fetch(`http://localhost:3001/forecast?lat=${lat}&lon=${lon}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
