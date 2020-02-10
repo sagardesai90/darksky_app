@@ -1,7 +1,7 @@
 export default {
   revGeocode(latLon) {
     return fetch(
-      `http://www.mapquestapi.com/geocoding/v1/address?key=7mgeUcljnphiHOLgKkXGcQNPqhKjZ34B&location=${latLon}`,
+      `https://www.mapquestapi.com/geocoding/v1/address?key=7mgeUcljnphiHOLgKkXGcQNPqhKjZ34B&location=${latLon}`,
       {
         method: "GET",
         headers: {
