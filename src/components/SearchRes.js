@@ -51,7 +51,10 @@ class SearchRes extends Component {
             <div className="forecast">
               <div className="current forecast">
                 Current Forecast:{" "}
-                {JSON.stringify(this.state.res.currently.summary)}
+                {JSON.stringify(this.state.res.currently.summary).replace(
+                  /"/g,
+                  ""
+                )}
               </div>
             </div>
 
@@ -66,14 +69,23 @@ class SearchRes extends Component {
             />
             <div>
               <div className="hourly forecast">
-                Hourly Forecast: {JSON.stringify(this.state.res.hourly.summary)}
+                Hourly Forecast:{" "}
+                {JSON.stringify(this.state.res.hourly.summary).replace(
+                  /"/g,
+                  ""
+                )}
               </div>
               <div className="daily forecast">
-                Daily Forecast: {JSON.stringify(this.state.res.daily.summary)}
+                Daily Forecast:{" "}
+                {JSON.stringify(this.state.res.daily.summary).replace(/"/g, "")}
               </div>
             </div>
             <div className="temperature">
-              {JSON.stringify(this.state.res.currently.temperature)} °F
+              {JSON.stringify(this.state.res.currently.temperature).replace(
+                /"/g,
+                ""
+              )}{" "}
+              °F
             </div>
           </Card>
         )}

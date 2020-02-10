@@ -173,8 +173,15 @@ class Search extends Component {
           <Card className="local-weather">
             <div className="forecast">
               <div className="userLocation">
-                {JSON.stringify(this.state.userLocation.adminArea5)},{" "}
-                {JSON.stringify(this.state.userLocation.adminArea3)}
+                {JSON.stringify(this.state.userLocation.adminArea5).replace(
+                  /"/g,
+                  ""
+                )}
+                ,{" "}
+                {JSON.stringify(this.state.userLocation.adminArea3).replace(
+                  /"/g,
+                  ""
+                )}
               </div>
             </div>
             <ReactAnimatedWeather
@@ -187,7 +194,11 @@ class Search extends Component {
               className="icon"
             />
             <div className="forecast">
-              Forecast: {JSON.stringify(this.state.localWeather.summary)}
+              Forecast:{" "}
+              {JSON.stringify(this.state.localWeather.summary).replace(
+                /"/g,
+                ""
+              )}
             </div>
             <div className="temp">
               {JSON.stringify(this.state.localWeather.temperature)} °F
