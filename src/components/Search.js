@@ -13,6 +13,7 @@ import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
 import MenuIcon from "@material-ui/icons/Menu";
 import Card from "@material-ui/core/Card";
+import ReactAnimatedWeather from "react-animated-weather";
 
 import Typist from "react-typist";
 
@@ -26,7 +27,8 @@ class Search extends Component {
       localWeather: "",
       userLocation: "",
       loading: null,
-      streetAddress: null
+      streetAddress: null,
+      icon: null
     };
     this.handleChange = this.handleChange.bind(this);
     this.submitSearch = this.submitSearch.bind(this);
@@ -73,10 +75,14 @@ class Search extends Component {
       }
     })
       .then(res => res.json())
-      .then(res =>
-        this.setState({ localWeather: res.currently, loading: false })
-      )
-      .then(res => console.log(this.state, "state in Search.js"));
+      .then(res => {
+        this.setState({
+          localWeather: res.currently,
+          loading: false
+        });
+        console.log(res, "res", this.state, "state");
+      })
+      .then(console.log(this.state, "state"));
   }
 
   submitSearch = event => {
@@ -93,7 +99,7 @@ class Search extends Component {
           res.results[0].locations[0].adminArea3
         ]
       });
-      console.log(this.state.streetAddress, "streetAddress in Search");
+      // console.log(this.state, "streetAddress in Search");
     });
   };
 
@@ -103,6 +109,12 @@ class Search extends Component {
     return (
       <div className="root">
         <h3>Darksky Weather</h3>
+        <ReactAnimatedWeather
+          icon="CLOUDY"
+          color="goldenrod"
+          size="50"
+          animate="true"
+        />
         <Typist className="myTypist">
           <span>San Francisco</span>
           <Typist.Backspace count={13} delay={200} />
@@ -164,9 +176,18 @@ class Search extends Component {
                 {JSON.stringify(this.state.userLocation.adminArea5)},{" "}
                 {JSON.stringify(this.state.userLocation.adminArea3)}
               </div>
-              <div>
-                Forecast: {JSON.stringify(this.state.localWeather.summary)}
-              </div>
+            </div>
+            <ReactAnimatedWeather
+              icon={this.state.localWeather.icon
+                .toUpperCase()
+                .replace("-", "_")}
+              color="goldenrod"
+              size="50"
+              animate="true"
+              className="icon"
+            />
+            <div className="forecast">
+              Forecast: {JSON.stringify(this.state.localWeather.summary)}
             </div>
             <div className="temp">
               {JSON.stringify(this.state.localWeather.temperature)} °F

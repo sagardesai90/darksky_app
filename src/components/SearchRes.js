@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./SearchRes.css";
 import Card from "@material-ui/core/Card";
+import ReactAnimatedWeather from "react-animated-weather";
 
 class SearchRes extends Component {
   constructor(props) {
@@ -27,9 +28,7 @@ class SearchRes extends Component {
     })
       .then(res => res.json())
       .then(res => this.setState({ res: res, loading: false }))
-      .then(res =>
-        console.log(this.state.streetAddress, "state in getWeather after")
-      );
+      .then(res => console.log(this.state, "state in getWeather after"));
   }
 
   componentDidUpdate(prevProps) {
@@ -54,6 +53,18 @@ class SearchRes extends Component {
                 Current Forecast:{" "}
                 {JSON.stringify(this.state.res.currently.summary)}
               </div>
+            </div>
+
+            <ReactAnimatedWeather
+              icon={this.state.res.currently.icon
+                .toUpperCase()
+                .replace("-", "_")}
+              color="goldenrod"
+              size="50"
+              animate="true"
+              className="icon"
+            />
+            <div>
               <div className="hourly forecast">
                 Hourly Forecast: {JSON.stringify(this.state.res.hourly.summary)}
               </div>
