@@ -1,9 +1,19 @@
 .root {
+  max-width: 80%;
+  /* border: dotted; */
+}
+
+.search-bar {
+  text-align: center;
+}
+
+.paper {
   padding: "2px 4px";
   display: grid;
   grid-template-columns: 8fr 0.01fr 1fr;
-  align-items: "center";
-  width: 100%;
+  width: 25rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .form {
@@ -16,18 +26,25 @@
 }
 .iconButton {
   padding: 10;
-}
-.divider {
-  height: 28px;
-  margin: 2rem;
+  border-bottom: 3px solid #282c34;
 }
 
 .local-weather {
   padding: 2rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
+  margin-left: 5%;
+  margin-right: 5%;
   display: grid;
   grid-template-columns: 3fr 1fr;
+}
+
+.streetAddress {
+  text-align: start;
+  padding: 0.25rem;
+  margin-left: 0.5rem;
+  font-size: 1rem;
+  color: gray;
 }
 
 .forecast {

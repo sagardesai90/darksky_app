@@ -25,7 +25,8 @@ class Search extends Component {
       userLatLon: [],
       localWeather: "",
       userLocation: "",
-      loading: null
+      loading: null,
+      streetAddress: null
     };
     this.handleChange = this.handleChange.bind(this);
     this.submitSearch = this.submitSearch.bind(this);
@@ -53,13 +54,11 @@ class Search extends Component {
       loading: true
     });
     api2.revGeocode([userLat, userLon]).then(res => {
-      console.log(res.results[0].locations[0], "res");
       this.setState({
         userLocation: res.results[0].locations[0]
       });
     });
     this.getWeather([userLat, userLon], this.state.loading);
-    console.log(this.state.userLocation, "userLatLon");
   }
 
   async getWeather(latLon, loading) {
@@ -88,9 +87,13 @@ class Search extends Component {
       const { lat, lng } = res.results[0].locations[0].latLng;
       this.setState({
         city,
-        latLon: [lat, lng]
+        latLon: [lat, lng],
+        streetAddress: [
+          res.results[0].locations[0].adminArea5,
+          res.results[0].locations[0].adminArea3
+        ]
       });
-      console.log(this.state, "state in submitSearch");
+      console.log(this.state.streetAddress, "streetAddress in Search");
     });
   };
 
@@ -98,7 +101,7 @@ class Search extends Component {
 
   render() {
     return (
-      <div>
+      <div className="root">
         <h3>Darksky Weather</h3>
         <Typist className="myTypist">
           <span>San Francisco</span>
@@ -110,7 +113,7 @@ class Search extends Component {
           <span>Type any address...</span>
         </Typist>
         <div className="search-bar">
-          <Paper component="form" className="root" elevation={3}>
+          <Paper component="form" className="paper" elevation={3}>
             {/* <IconButton className="iconButton" aria-label="menu">
               <MenuIcon />
             </IconButton> */}
@@ -138,8 +141,22 @@ class Search extends Component {
             >
               <MyLocationIcon className="loc-icon" onClick={this.getLocation} />
             </IconButton>
+            <div className="divider">
+              <Divider className="divider" orientation="horizontal" />
+              {this.state.streetAddress !== null && (
+                <div className="streetAddress">
+                  {" "}
+                  Search location:
+                  {JSON.stringify(this.state.streetAddress[0])},{" "}
+                  {JSON.stringify(this.state.streetAddress[1])}
+                </div>
+              )}
+            </div>
+            <Divider className="divider" orientation="horizontal" />
+            <Divider className="divider" orientation="horizontal" />
           </Paper>
         </div>
+
         {this.state.localWeather !== "" && (
           <Card className="local-weather">
             <div className="forecast">
@@ -157,7 +174,11 @@ class Search extends Component {
           </Card>
         )}
 
-        <SearchRes latLon={this.state.latLon} loading={this.state.loading} />
+        <SearchRes
+          latLon={this.state.latLon}
+          streetAddress={this.state.streetAddress}
+          loading={this.state.loading}
+        />
       </div>
     );
   }

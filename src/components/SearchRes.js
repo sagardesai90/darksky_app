@@ -4,11 +4,13 @@ import Card from "@material-ui/core/Card";
 
 class SearchRes extends Component {
   constructor(props) {
+    console.log(props, "props in SearchRes");
     super(props);
     this.state = {
       latLon: props.latLon,
       res: "",
-      loading: props.loading
+      loading: props.loading,
+      streetAddress: props.streetAddress
     };
   }
 
@@ -25,7 +27,9 @@ class SearchRes extends Component {
     })
       .then(res => res.json())
       .then(res => this.setState({ res: res, loading: false }))
-      .then(res => console.log(this.state, "state in getWeather after"));
+      .then(res =>
+        console.log(this.state.streetAddress, "state in getWeather after")
+      );
   }
 
   componentDidUpdate(prevProps) {
@@ -35,7 +39,6 @@ class SearchRes extends Component {
     if (currLat !== prevLat && currLon !== prevLon) {
       this.getWeather([currLat, currLon]);
       setInterval(() => {
-        // this.setState({ loading: "True" });
         this.getWeather([currLat, currLon]);
       }, 60000);
     }
@@ -44,7 +47,6 @@ class SearchRes extends Component {
   render() {
     return (
       <div>
-        {/* {this.state.loading === true && <Spinner />} */}
         {this.state.res !== "" && (
           <Card className="card-info">
             <div className="forecast">
