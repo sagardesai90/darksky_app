@@ -28,7 +28,8 @@ class SearchRes extends Component {
     })
       .then(res => res.json())
       .then(res => this.setState({ res: res, loading: false }))
-      .then(res => console.log(this.state, "state in getWeather after"));
+      .then(res => console.log(this.state, "state in getWeather after"))
+      .catch(err => console.log(err, "err"));
   }
 
   componentDidUpdate(prevProps) {
@@ -59,9 +60,9 @@ class SearchRes extends Component {
             </div>
 
             <ReactAnimatedWeather
-              icon={this.state.res.currently.icon
-                .toUpperCase()
-                .replace("-", "_")}
+              // icon={this.state.res.currently.icon
+              //   .toUpperCase()
+              //   .replace("-", "_")}
               color="goldenrod"
               size="50"
               animate="true"

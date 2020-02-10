@@ -158,9 +158,16 @@ class Search extends Component {
               {this.state.streetAddress !== null && (
                 <div className="streetAddress">
                   {" "}
-                  Search location:
-                  {JSON.stringify(this.state.streetAddress[0])},{" "}
-                  {JSON.stringify(this.state.streetAddress[1])}
+                  Search location:{" "}
+                  {JSON.stringify(this.state.streetAddress[0]).replace(
+                    /"/g,
+                    ""
+                  )}
+                  ,{" "}
+                  {JSON.stringify(this.state.streetAddress[1]).replace(
+                    /"/g,
+                    ""
+                  )}
                 </div>
               )}
             </div>
