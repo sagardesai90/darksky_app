@@ -16,6 +16,16 @@ app.use(function(req, res, next) {
   next();
 });
 
+// Serve static assets in production
+if (process.env.NODE_ENV === "production") {
+  // Set static folder
+  app.use(express.static("public/build"));
+
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "public", "build", "index.html"))
+  );
+}
+
 app.get("/", function(req, res) {
   res.send("hello world");
 });
