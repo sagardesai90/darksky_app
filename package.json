@@ -21,13 +21,12 @@
     "react-typist": "^2.0.5"
   },
   "scripts": {
-    "start": "concurrently \"nodemon server.js\" \"npm run go\"",
-    "go": "react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "server": "nodemon sever.js",
     "eject": "react-scripts eject",
     "test": "jest",
-    "dev": "concurrently \"nodemon server.js\" \"npm run go\""
+    "dev": "concurrently \"nodemon server.js\" \"npm run start\""
   },
   "eslintConfig": {
     "extends": "react-app"
