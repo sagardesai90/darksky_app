@@ -194,7 +194,7 @@ class Search extends Component {
             <ReactAnimatedWeather
               icon={this.state.localWeather.icon
                 .toUpperCase()
-                .replace("-", "_")}
+                .replace(/-/g, "_")}
               color="goldenrod"
               size="50"
               animate="true"
