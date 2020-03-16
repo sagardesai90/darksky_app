@@ -84,7 +84,8 @@ class Search extends Component {
         });
         console.log(res, "res", this.state, "state");
       })
-      .then(console.log(this.state, "state"));
+      .then(console.log(this.state, "state"))
+      .catch(err => console.log(err, "err"));
   }
 
   submitSearch = event => {
