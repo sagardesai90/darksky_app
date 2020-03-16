@@ -51,6 +51,12 @@
   text-align: start;
 }
 
+.weeklyForecast {
+  text-align: start;
+  font-size: small;
+  padding-top: 1rem;
+}
+
 .userLocation {
   align-content: flex-start;
   margin-bottom: 2rem;
@@ -64,4 +70,14 @@
 
 .myTypist {
   margin-bottom: 2rem;
+}
+
+.weeklyIcons {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding-top: 1rem;
+}
+
+.icon1 {
+  margin-left: 2rem;
 }

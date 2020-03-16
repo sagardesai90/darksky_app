@@ -28,7 +28,8 @@ class Search extends Component {
       userLocation: "",
       loading: null,
       streetAddress: null,
-      icon: null
+      icon: null,
+      weeklyForecast: null
     };
     this.handleChange = this.handleChange.bind(this);
     this.submitSearch = this.submitSearch.bind(this);
@@ -78,7 +79,8 @@ class Search extends Component {
       .then(res => {
         this.setState({
           localWeather: res.currently,
-          loading: false
+          loading: false,
+          weeklyForecast: res.daily
         });
         console.log(res, "res", this.state, "state");
       })
@@ -209,6 +211,77 @@ class Search extends Component {
             </div>
             <div className="temp">
               {JSON.stringify(this.state.localWeather.temperature)} °F
+            </div>
+            <div className="weeklyForecast">
+              {JSON.stringify(this.state.weeklyForecast.summary).replace(
+                /"/g,
+                ""
+              )}
+            </div>
+            <div className="weeklyIcons">
+              <ReactAnimatedWeather
+                icon={this.state.weeklyForecast.data[0].icon
+                  .toUpperCase()
+                  .replace(/-/g, "_")}
+                color="goldenrod"
+                size="50"
+                animate="true"
+                className="icon"
+              />
+              <ReactAnimatedWeather
+                icon={this.state.weeklyForecast.data[1].icon
+                  .toUpperCase()
+                  .replace(/-/g, "_")}
+                color="goldenrod"
+                size="50"
+                animate="true"
+                className="icon"
+              />
+              <ReactAnimatedWeather
+                icon={this.state.weeklyForecast.data[2].icon
+                  .toUpperCase()
+                  .replace(/-/g, "_")}
+                color="goldenrod"
+                size="50"
+                animate="true"
+                className="icon"
+              />
+              <ReactAnimatedWeather
+                icon={this.state.weeklyForecast.data[3].icon
+                  .toUpperCase()
+                  .replace(/-/g, "_")}
+                color="goldenrod"
+                size="50"
+                animate="true"
+                className="icon"
+              />
+              <ReactAnimatedWeather
+                icon={this.state.weeklyForecast.data[4].icon
+                  .toUpperCase()
+                  .replace(/-/g, "_")}
+                color="goldenrod"
+                size="50"
+                animate="true"
+                className="icon"
+              />
+              <ReactAnimatedWeather
+                icon={this.state.weeklyForecast.data[5].icon
+                  .toUpperCase()
+                  .replace(/-/g, "_")}
+                color="goldenrod"
+                size="50"
+                animate="true"
+                className="icon"
+              />
+              <ReactAnimatedWeather
+                icon={this.state.weeklyForecast.data[6].icon
+                  .toUpperCase()
+                  .replace(/-/g, "_")}
+                color="goldenrod"
+                size="50"
+                animate="true"
+                className="icon"
+              />
             </div>
           </Card>
         )}
