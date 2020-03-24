@@ -23,3 +23,9 @@
   font-size: 1.2rem;
   border-bottom: 3px solid #282c34;
 }
+
+.weekly {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding-top: 1rem;
+}

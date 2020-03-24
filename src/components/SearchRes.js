@@ -53,7 +53,7 @@ class SearchRes extends Component {
           <Card className="card-info">
             <div className="forecast">
               <div className="current forecast">
-                Current Forecast:{" "}
+                Local Forecast:{" "}
                 {JSON.stringify(this.state.res.currently.summary).replace(
                   /"/g,
                   ""
@@ -78,10 +78,6 @@ class SearchRes extends Component {
                   ""
                 )}
               </div>
-              <div className="daily forecast">
-                Daily Forecast:{" "}
-                {JSON.stringify(this.state.res.daily.summary).replace(/"/g, "")}
-              </div>
             </div>
             <div className="temperature">
               {JSON.stringify(this.state.res.currently.temperature).replace(
@@ -89,6 +85,96 @@ class SearchRes extends Component {
                 ""
               )}{" "}
               °F
+            </div>
+            <div className="daily forecast">
+              Daily Forecast:{" "}
+              {JSON.stringify(this.state.res.daily.summary).replace(/"/g, "")}
+            </div>
+            <div className="weekly">
+              <div>
+                <ReactAnimatedWeather
+                  icon={this.state.res.daily.data[0].icon
+                    .toUpperCase()
+                    .replace(/-/g, "_")}
+                  color="goldenrod"
+                  size="50"
+                  animate="true"
+                  className="icon"
+                />
+                <p>S</p>
+              </div>
+              <div>
+                <ReactAnimatedWeather
+                  icon={this.state.res.daily.data[1].icon
+                    .toUpperCase()
+                    .replace(/-/g, "_")}
+                  color="goldenrod"
+                  size="50"
+                  animate="true"
+                  className="icon"
+                />
+                <p>M</p>
+              </div>
+              <div>
+                <ReactAnimatedWeather
+                  icon={this.state.res.daily.data[2].icon
+                    .toUpperCase()
+                    .replace(/-/g, "_")}
+                  color="goldenrod"
+                  size="50"
+                  animate="true"
+                  className="icon"
+                />
+                <p>T</p>
+              </div>
+              <div>
+                <ReactAnimatedWeather
+                  icon={this.state.res.daily.data[3].icon
+                    .toUpperCase()
+                    .replace(/-/g, "_")}
+                  color="goldenrod"
+                  size="50"
+                  animate="true"
+                  className="icon"
+                />
+                <p>W</p>
+              </div>
+              <div>
+                <ReactAnimatedWeather
+                  icon={this.state.res.daily.data[4].icon
+                    .toUpperCase()
+                    .replace(/-/g, "_")}
+                  color="goldenrod"
+                  size="50"
+                  animate="true"
+                  className="icon"
+                />
+                <p>T</p>
+              </div>
+              <div>
+                <ReactAnimatedWeather
+                  icon={this.state.res.daily.data[5].icon
+                    .toUpperCase()
+                    .replace(/-/g, "_")}
+                  color="goldenrod"
+                  size="50"
+                  animate="true"
+                  className="icon"
+                />
+                <p>F</p>
+              </div>
+              <div>
+                <ReactAnimatedWeather
+                  icon={this.state.res.daily.data[6].icon
+                    .toUpperCase()
+                    .replace(/-/g, "_")}
+                  color="goldenrod"
+                  size="50"
+                  animate="true"
+                  className="icon"
+                />
+                <p>S</p>
+              </div>
             </div>
           </Card>
         )}
